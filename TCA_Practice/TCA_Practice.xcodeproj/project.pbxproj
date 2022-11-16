@@ -15,6 +15,8 @@
 		53D38E602923CFE9008F3C69 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 53D38E5F2923CFE9008F3C69 /* Dependencies */; };
 		53D38E662923D32E008F3C69 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E652923D32E008F3C69 /* CounterView.swift */; };
 		53D38E682924C9CB008F3C69 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E672924C9CB008F3C69 /* Core.swift */; };
+		53D38E6A2924EFB1008F3C69 /* EffectsCancellationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E692924EFB1008F3C69 /* EffectsCancellationView.swift */; };
+		53D38E6C292524D8008F3C69 /* FactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E6B292524D8008F3C69 /* FactClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		53D38E53292235E1008F3C69 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		53D38E652923D32E008F3C69 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		53D38E672924C9CB008F3C69 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		53D38E692924EFB1008F3C69 /* EffectsCancellationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsCancellationView.swift; sourceTree = "<group>"; };
+		53D38E6B292524D8008F3C69 /* FactClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 				53D38E652923D32E008F3C69 /* CounterView.swift */,
 				53D38E50292235E1008F3C69 /* Assets.xcassets */,
 				53D38E52292235E1008F3C69 /* Preview Content */,
+				53D38E692924EFB1008F3C69 /* EffectsCancellationView.swift */,
+				53D38E6B292524D8008F3C69 /* FactClient.swift */,
 			);
 			path = TCA_Practice;
 			sourceTree = "<group>";
@@ -154,6 +160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53D38E6C292524D8008F3C69 /* FactClient.swift in Sources */,
+				53D38E6A2924EFB1008F3C69 /* EffectsCancellationView.swift in Sources */,
 				53D38E4F292235E0008F3C69 /* RootView.swift in Sources */,
 				53D38E4D292235E0008F3C69 /* TCA_PracticeApp.swift in Sources */,
 				53D38E682924C9CB008F3C69 /* Core.swift in Sources */,
