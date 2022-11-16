@@ -21,7 +21,16 @@ struct EffectsCancellation: ReducerProtocol {
         case factResponse(TaskResult<String>)
     }
     
-    //@Dependency(\.fac)
+    @Dependency(\.factClient) var factClient
+    private enum NumberFactRequestID {}
+    
+    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+        switch action {
+        case .cancelButtonTapped:
+            state.isFactRequestInFlight = false
+            return .cancel(id: NumberFactRequestID.self)
+        }
+    }
 }
 
 struct EffectsCancellationView: View {
