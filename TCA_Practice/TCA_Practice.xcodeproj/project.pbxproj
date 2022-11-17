@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53C10B072926713B00459229 /* NumberFactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C10B062926713B00459229 /* NumberFactView.swift */; };
 		53D38E4D292235E0008F3C69 /* TCA_PracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E4C292235E0008F3C69 /* TCA_PracticeApp.swift */; };
 		53D38E4F292235E0008F3C69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E4E292235E0008F3C69 /* RootView.swift */; };
 		53D38E51292235E1008F3C69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53D38E50292235E1008F3C69 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53C10B062926713B00459229 /* NumberFactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactView.swift; sourceTree = "<group>"; };
 		53D38E49292235E0008F3C69 /* TCA_Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA_Practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D38E4C292235E0008F3C69 /* TCA_PracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_PracticeApp.swift; sourceTree = "<group>"; };
 		53D38E4E292235E0008F3C69 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				53D38E652923D32E008F3C69 /* CounterView.swift */,
 				53D38E692924EFB1008F3C69 /* EffectsCancellationView.swift */,
 				53D38E6B292524D8008F3C69 /* FactClient.swift */,
+				53C10B062926713B00459229 /* NumberFactView.swift */,
 				53D38E50292235E1008F3C69 /* Assets.xcassets */,
 				53D38E52292235E1008F3C69 /* Preview Content */,
 			);
@@ -162,6 +165,7 @@
 			files = (
 				53D38E6C292524D8008F3C69 /* FactClient.swift in Sources */,
 				53D38E6A2924EFB1008F3C69 /* EffectsCancellationView.swift in Sources */,
+				53C10B072926713B00459229 /* NumberFactView.swift in Sources */,
 				53D38E4F292235E0008F3C69 /* RootView.swift in Sources */,
 				53D38E4D292235E0008F3C69 /* TCA_PracticeApp.swift in Sources */,
 				53D38E682924C9CB008F3C69 /* Core.swift in Sources */,
