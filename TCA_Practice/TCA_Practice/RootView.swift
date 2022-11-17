@@ -17,6 +17,12 @@ struct RootView: View {
                     NavigationLink("Counter",
                                    destination: CounterDemoView(store: self.store.scope(state: \.counter, action: Root.Action.counter)))
                 }
+                
+                Section(header: Text("Effects")) {
+                    NavigationLink("Cancellation",
+                                   destination: EffectsCancellationView(store: self.store.scope(state: \.effectsCancellation, action: Root.Action.effectsCancellation))
+                    )
+                }
             }
         }
     }

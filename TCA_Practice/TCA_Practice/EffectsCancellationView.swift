@@ -66,9 +66,7 @@ struct EffectsCancellationView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
                 Section {
-                    Stepper("\(viewStore.count)",
-                            value: viewStore.binding(get: \.count, send: EffectsCancellation.Action.stepperChanged)
-                    )
+                    Stepper("\(viewStore.count)", value: viewStore.binding(get: \.count, send: EffectsCancellation.Action.stepperChanged))
                     
                     if viewStore.isFactRequestInFlight {
                         HStack {

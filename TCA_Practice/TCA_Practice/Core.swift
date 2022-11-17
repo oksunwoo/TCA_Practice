@@ -10,10 +10,12 @@ import ComposableArchitecture
 struct Root: ReducerProtocol {
     struct State: Equatable {
         var counter = Counter.State()
+        var effectsCancellation = EffectsCancellation.State()
     }
     
     enum Action {
         case counter(Counter.Action)
+        case effectsCancellation(EffectsCancellation.Action)
     }
     
     var body: some ReducerProtocol<State, Action> {
@@ -26,6 +28,10 @@ struct Root: ReducerProtocol {
         
         Scope(state: \.counter, action: /Action.counter) {
             Counter()
+        }
+        
+        Scope(state: \.effectsCancellation, action: /Action.effectsCancellation) {
+            EffectsCancellation()
         }
     }
     
