@@ -28,7 +28,54 @@ struct NumberFact: ReducerProtocol {
     private enum DelayID {}
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        <#code#>
+        switch action {
+        case .decrementButtonTapped:
+            state.count -= 1
+            state.numberFact = nil
+            
+            return state.count >= 0 ? .none : .task {
+                try await
+                self.clock.sleep(for: .seconds(1))
+                
+                return .decrementDelayResponse
+            }.cancellable(id: DelayID.self)
+            
+        case .decrementDelayResponse:
+            if state.count < 0 {
+                state.count += 1
+            }
+            
+            return .none
+            
+        case .incrementButtonTapped:
+            state.count += 1
+            state.numberFact = nil
+            
+            return state.count >= 0 ? .cancel(id: DelayID.self) : .none
+            
+        case .numberFactButtonTapped:
+            state.isNumberFactRequestInFlight = true
+            state.numberFact = nil
+            
+            return .task {
+                [count = state.count] in
+                await .numberFactResponse(TaskResult {
+                    try await
+                    self.factClient.fetch(count)
+                })
+            }
+            
+        case .numberFactResponse(.success(let response)):
+            state.isNumberFactRequestInFlight = false
+            state.numberFact = response
+            
+            return .none
+        
+        case .numberFactResponse(.failure):
+            state.isNumberFactRequestInFlight = false
+            
+            return .none
+        }
     }
 }
 
