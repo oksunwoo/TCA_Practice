@@ -16,7 +16,11 @@ struct NumberFact: ReducerProtocol {
     }
     
     enum Action: Equatable {
-        
+        case decrementButtonTapped
+        case decrementDelayResponse
+        case incrementButtonTapped
+        case numberFactButtonTapped
+        case numberFactResponse(TaskResult<String>)
     }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
