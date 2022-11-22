@@ -23,6 +23,10 @@ struct NumberFact: ReducerProtocol {
         case numberFactResponse(TaskResult<String>)
     }
     
+    @Dependency(\.continuousClock) var clock
+    @Dependency(\.factClient) var factClient
+    private enum DelayID {}
+    
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         <#code#>
     }
