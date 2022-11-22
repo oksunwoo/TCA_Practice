@@ -80,13 +80,43 @@ struct NumberFact: ReducerProtocol {
 }
 
 struct NumberFactView: View {
+    let store: StoreOf<NumberFact>
+    @Environment(\.openURL) var openURL
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Form {
+                Section {
+                    HStack {
+                        Button {
+                            viewStore.send(.decrementButtonTapped)
+                        } label: {
+                            Image(systemName: "minus")
+                        }
+                        
+                        Text("\(viewStore.count)")
+                            .monospacedDigit()
+                        
+                        Button {
+                            viewStore.send(.incrementButtonTapped)
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    Button("NumberFact") {
+                        viewStore.send(.numberFactButtonTapped)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+        }
     }
 }
 
 struct NumberFactView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberFactView()
+        NumberFactView(store: Store(initialState: NumberFact.State(), reducer: NumberFact()))
     }
 }
