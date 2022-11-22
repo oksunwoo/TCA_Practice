@@ -6,6 +6,23 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+
+struct NumberFact: ReducerProtocol {
+    struct State: Equatable {
+        var count = 0
+        var isNumberFactRequestInFlight = false
+        var numberFact: String?
+    }
+    
+    enum Action: Equatable {
+        
+    }
+    
+    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+        <#code#>
+    }
+}
 
 struct NumberFactView: View {
     var body: some View {
