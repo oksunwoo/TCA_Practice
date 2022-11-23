@@ -19,6 +19,8 @@ struct RootView: View {
                 }
                 
                 Section(header: Text("Effects")) {
+                    NavigationLink("NumberFact", destination: NumberFactView(store: self.store.scope(state: \.numberFact, action: Root.Action.numberFact)))
+                    
                     NavigationLink("Cancellation",
                                    destination: EffectsCancellationView(store: self.store.scope(state: \.effectsCancellation, action: Root.Action.effectsCancellation))
                     )

@@ -70,7 +70,7 @@ struct NumberFact: ReducerProtocol {
             state.numberFact = response
             
             return .none
-        
+            
         case .numberFactResponse(.failure):
             state.isNumberFactRequestInFlight = false
             
@@ -81,7 +81,7 @@ struct NumberFact: ReducerProtocol {
 
 struct NumberFactView: View {
     let store: StoreOf<NumberFact>
-    @Environment(\.openURL) var openURL
+    //@Environment(\.openURL) var openURL
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -93,7 +93,7 @@ struct NumberFactView: View {
                         } label: {
                             Image(systemName: "minus")
                         }
-                        
+
                         Text("\(viewStore.count)")
                             .monospacedDigit()
                         
@@ -109,14 +109,28 @@ struct NumberFactView: View {
                         viewStore.send(.numberFactButtonTapped)
                     }
                     .frame(maxWidth: .infinity)
+                    
+                    if viewStore.isNumberFactRequestInFlight {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                            .id(UUID())
+                    }
+                    
+                    if let numberFact = viewStore.numberFact {
+                        Text(numberFact)
+                    }
                 }
             }
+            .buttonStyle(.borderless)
         }
+        .navigationTitle("Effects")
     }
 }
 
 struct NumberFactView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberFactView(store: Store(initialState: NumberFact.State(), reducer: NumberFact()))
+        NavigationView {
+            NumberFactView(store: Store(initialState: NumberFact.State(), reducer: NumberFact()))
+        }
     }
 }

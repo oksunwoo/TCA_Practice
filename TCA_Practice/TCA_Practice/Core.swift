@@ -11,11 +11,13 @@ struct Root: ReducerProtocol {
     struct State: Equatable {
         var counter = Counter.State()
         var effectsCancellation = EffectsCancellation.State()
+        var numberFact = NumberFact.State()
     }
     
     enum Action {
         case counter(Counter.Action)
         case effectsCancellation(EffectsCancellation.Action)
+        case numberFact(NumberFact.Action)
     }
     
     var body: some ReducerProtocol<State, Action> {
@@ -32,6 +34,10 @@ struct Root: ReducerProtocol {
         
         Scope(state: \.effectsCancellation, action: /Action.effectsCancellation) {
             EffectsCancellation()
+        }
+        
+        Scope(state: \.numberFact, action: /Action.numberFact) {
+            NumberFact()
         }
     }
     
