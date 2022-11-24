@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53B3A84C292F7926005FD290 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B3A84B292F7926005FD290 /* Weather.swift */; };
 		53C10B072926713B00459229 /* NumberFactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C10B062926713B00459229 /* NumberFactView.swift */; };
 		53D38E4D292235E0008F3C69 /* TCA_PracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E4C292235E0008F3C69 /* TCA_PracticeApp.swift */; };
 		53D38E4F292235E0008F3C69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E4E292235E0008F3C69 /* RootView.swift */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53B3A84A292E5613005FD290 /* TCA-Practice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TCA-Practice-Info.plist"; sourceTree = SOURCE_ROOT; };
+		53B3A84B292F7926005FD290 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		53C10B062926713B00459229 /* NumberFactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactView.swift; sourceTree = "<group>"; };
 		53D38E49292235E0008F3C69 /* TCA_Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA_Practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D38E4C292235E0008F3C69 /* TCA_PracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_PracticeApp.swift; sourceTree = "<group>"; };
@@ -65,13 +68,15 @@
 		53D38E4B292235E0008F3C69 /* TCA_Practice */ = {
 			isa = PBXGroup;
 			children = (
+				53B3A84A292E5613005FD290 /* TCA-Practice-Info.plist */,
 				53D38E4C292235E0008F3C69 /* TCA_PracticeApp.swift */,
 				53D38E672924C9CB008F3C69 /* Core.swift */,
 				53D38E4E292235E0008F3C69 /* RootView.swift */,
 				53D38E652923D32E008F3C69 /* CounterView.swift */,
 				53D38E692924EFB1008F3C69 /* EffectsCancellationView.swift */,
-				53D38E6B292524D8008F3C69 /* FactClient.swift */,
 				53C10B062926713B00459229 /* NumberFactView.swift */,
+				53B3A84B292F7926005FD290 /* Weather.swift */,
+				53D38E6B292524D8008F3C69 /* FactClient.swift */,
 				53D38E50292235E1008F3C69 /* Assets.xcassets */,
 				53D38E52292235E1008F3C69 /* Preview Content */,
 			);
@@ -163,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B3A84C292F7926005FD290 /* Weather.swift in Sources */,
 				53D38E6C292524D8008F3C69 /* FactClient.swift in Sources */,
 				53D38E6A2924EFB1008F3C69 /* EffectsCancellationView.swift in Sources */,
 				53C10B072926713B00459229 /* NumberFactView.swift in Sources */,
@@ -301,6 +307,7 @@
 				DEVELOPMENT_TEAM = 79WK37N5M5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TCA-Practice-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -330,6 +337,7 @@
 				DEVELOPMENT_TEAM = 79WK37N5M5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TCA-Practice-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
