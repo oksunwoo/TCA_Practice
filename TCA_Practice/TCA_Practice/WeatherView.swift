@@ -51,9 +51,42 @@ struct Weather: ReducerProtocol {
 
 struct WeatherView: View {
     let store: StoreOf<Weather>
+    @State var longitude: String = ""
+    @State var latitude: String = ""
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Form {
+                Section {
+                    HStack {
+                        VStack {
+                            TextField("Enter longitude", text: $longitude)
+                            TextField("Enter latitude", text: $latitude)
+                        }
+                        .textFieldStyle(.roundedBorder)
+                        
+                        Button {
+                            
+                        } label: {
+                            Text("Confirm")
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                }
+                
+                Section {
+                    if viewStore.isWeatherRequest {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                            .id(UUID())
+                    }
+                    
+                    if let climate = viewStore.result {
+                        Text(climate)
+                    }
+                }
+            }
+        }
     }
 }
 
