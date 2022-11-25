@@ -12,12 +12,12 @@ struct WeatherClient {
     var fetch: @Sendable (Double, Double) async throws -> String
 }
 
-//extension DependencyValues {
-//    var weatherClient: WeatherClient {
-//        get { self[WeatherClient.self] }
-//        set { self[WeatherClient.self] = newValue }
-//    }
-//}
+extension DependencyValues {
+    var weatherClient: WeatherClient {
+        get { self[WeatherClient.self] }
+        set { self[WeatherClient.self] = newValue }
+    }
+}
 
 extension WeatherClient: DependencyKey {
     static let liveValue = WeatherClient(

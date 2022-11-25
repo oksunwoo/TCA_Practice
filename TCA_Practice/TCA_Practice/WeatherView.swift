@@ -17,16 +17,41 @@ struct Weather: ReducerProtocol {
     }
     
     enum Action: Equatable {
-        
+        case confirmButtonTapped
+        case weatherResponse(TaskResult<String>)
     }
     
+    @Dependency(\.weatherClient) var weatherClient
+    
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        <#code#>
+        switch action {
+        case .confirmButtonTapped:
+            state.isWeatherRequest = true
+            state.result = nil
+            
+            return .task { [latitude = state.latitude, longitude = state.longitude] in
+                await .weatherResponse(TaskResult { try await
+                    self.weatherClient.fetch(latitude, longitude)
+                })
+            }
+            
+        case .weatherResponse(.success(let response)):
+            state.isWeatherRequest = false
+            state.result = response
+
+            return .none
+            
+        case .weatherResponse(.failure):
+            state.isWeatherRequest = false
+            
+            return .none
+        }
     }
 }
 
-
 struct WeatherView: View {
+    let store: StoreOf<Weather>
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -34,6 +59,8 @@ struct WeatherView: View {
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherView()
+        NavigationView {
+            WeatherView(store: Store(initialState: Weather.State(), reducer: Weather()))
+        }
     }
 }
