@@ -66,7 +66,7 @@ struct WeatherView: View {
                         .textFieldStyle(.roundedBorder)
                         
                         Button {
-                            
+                            viewStore.send(.confirmButtonTapped)
                         } label: {
                             Text("Confirm")
                         }
