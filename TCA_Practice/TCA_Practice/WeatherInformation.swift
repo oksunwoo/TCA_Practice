@@ -8,11 +8,7 @@
 import Foundation
 
 // MARK: - WeatherInformation
-struct WeatherInformation: Codable, Equatable {
-    static func == (lhs: WeatherInformation, rhs: WeatherInformation) -> Bool {
-        return true
-    }
-    
+struct WeatherInformation: Codable {
     let coord: Coord
     let weather: [Climate]
     let base: String
@@ -28,14 +24,21 @@ struct WeatherInformation: Codable, Equatable {
     let cod: Int
 }
 
-// MARK: - Clouds
-struct Clouds: Codable {
-    let all: Int
-}
-
 // MARK: - Coord
 struct Coord: Codable {
     let lon, lat: Double
+}
+
+// MARK: - Climate
+struct Climate: Codable {
+    let id: Int
+    let main, weatherDescription, icon: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, main
+        case weatherDescription = "description"
+        case icon
+    }
 }
 
 // MARK: - Main
@@ -54,6 +57,13 @@ struct Main: Codable {
     }
 }
 
+// MARK: - Wind
+struct Wind: Codable {
+    let speed: Double
+    let deg: Int
+    let gust: Double
+}
+
 // MARK: - Rain
 struct Rain: Codable {
     let the1H: Double
@@ -63,6 +73,11 @@ struct Rain: Codable {
     }
 }
 
+// MARK: - Clouds
+struct Clouds: Codable {
+    let all: Int
+}
+
 // MARK: - Sys
 struct Sys: Codable {
     let type, id: Int
@@ -70,21 +85,8 @@ struct Sys: Codable {
     let sunrise, sunset: Int
 }
 
-// MARK: - Climate
-struct Climate: Codable {
-    let id: Int
-    let main, weatherDescription, icon: String
-
-    enum CodingKeys: String, CodingKey {
-        case id, main
-        case weatherDescription = "description"
-        case icon
+extension WeatherInformation: Equatable {
+    static func == (lhs: WeatherInformation, rhs: WeatherInformation) -> Bool {
+        return true
     }
-}
-
-// MARK: - Wind
-struct Wind: Codable {
-    let speed: Double
-    let deg: Int
-    let gust: Double
 }

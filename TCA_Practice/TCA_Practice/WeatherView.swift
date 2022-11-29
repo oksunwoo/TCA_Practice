@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct Weather: ReducerProtocol {
+struct Weathers: ReducerProtocol {
     struct State: Equatable {
         var latitude: Double = 0
         var longitude: Double = 0
@@ -50,7 +50,7 @@ struct Weather: ReducerProtocol {
 }
 
 struct WeatherView: View {
-    let store: StoreOf<Weather>
+    let store: StoreOf<Weathers>
     @State var longitude: String = ""
     @State var latitude: String = ""
     
@@ -93,7 +93,7 @@ struct WeatherView: View {
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            WeatherView(store: Store(initialState: Weather.State(), reducer: Weather()))
+            WeatherView(store: Store(initialState: Weathers.State(), reducer: Weathers()))
         }
     }
 }

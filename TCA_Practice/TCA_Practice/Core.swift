@@ -12,14 +12,14 @@ struct Root: ReducerProtocol {
         var counter = Counter.State()
         var effectsCancellation = EffectsCancellation.State()
         var numberFact = NumberFact.State()
-        var weather = Weather.State()
+        var weather = Weathers.State()
     }
     
     enum Action {
         case counter(Counter.Action)
         case effectsCancellation(EffectsCancellation.Action)
         case numberFact(NumberFact.Action)
-        case weather(Weather.Action)
+        case weather(Weathers.Action)
     }
     
     var body: some ReducerProtocol<State, Action> {
@@ -43,7 +43,7 @@ struct Root: ReducerProtocol {
         }
         
         Scope(state: \.weather, action: /Action.weather) {
-            Weather()
+            Weathers()
         }
     }
     
