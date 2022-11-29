@@ -31,7 +31,7 @@ struct Weathers: ReducerProtocol {
             
             return .task { [latitude = state.latitude, longitude = state.longitude] in
                 await .weatherResponse(TaskResult { try await
-                    self.weatherClient.fetch(latitude, longitude)
+                    self.weatherClient.fetch(latitude, longitude)!
                 })
             }
             
@@ -82,7 +82,7 @@ struct WeatherView: View {
                     }
                     
                     if let climate = viewStore.result {
-                        Text(climate.name)
+                        Text(climate.weather[0].main)
                     }
                 }
             }

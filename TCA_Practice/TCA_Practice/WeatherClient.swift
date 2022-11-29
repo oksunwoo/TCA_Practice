@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 struct WeatherClient {
-    var fetch: @Sendable (Double, Double) async throws -> WeatherInformation
+    var fetch: @Sendable (Double, Double) async throws -> WeatherInformation?
 }
 
 extension DependencyValues {
@@ -25,7 +25,7 @@ extension WeatherClient: DependencyKey {
             let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=0c9597f339213a09976a39e4c6f49cc5")!)
             
             let parsedData = JsonParser.decode(from: data)
-            return parsedData!
+            return parsedData
         }
     )
 }

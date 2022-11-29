@@ -13,6 +13,7 @@ enum JsonParser {
         
         do {
             weather = try JSONDecoder().decode(WeatherInformation.self, from: json)
+            return weather
         } catch {
             print(error)
         }
