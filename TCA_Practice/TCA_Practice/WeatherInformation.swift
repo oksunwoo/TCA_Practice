@@ -8,7 +8,11 @@
 import Foundation
 
 // MARK: - WeatherInformation
-struct WeatherInformation: Codable {
+struct WeatherInformation: Codable, Equatable {
+    static func == (lhs: WeatherInformation, rhs: WeatherInformation) -> Bool {
+        return true
+    }
+    
     let coord: Coord
     let weather: [Climate]
     let base: String

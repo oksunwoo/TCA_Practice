@@ -13,12 +13,12 @@ struct Weather: ReducerProtocol {
         var latitude: Double = 0
         var longitude: Double = 0
         var isWeatherRequest = false
-        var result: String?
+        var result: WeatherInformation?
     }
     
     enum Action: Equatable {
         case confirmButtonTapped
-        case weatherResponse(TaskResult<String>)
+        case weatherResponse(TaskResult<WeatherInformation>)
     }
     
     @Dependency(\.weatherClient) var weatherClient
@@ -82,7 +82,7 @@ struct WeatherView: View {
                     }
                     
                     if let climate = viewStore.result {
-                        Text(climate)
+                        Text(climate.name)
                     }
                 }
             }
