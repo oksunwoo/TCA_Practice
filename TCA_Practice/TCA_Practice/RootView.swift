@@ -22,8 +22,10 @@ struct RootView: View {
                     NavigationLink("NumberFact", destination: NumberFactView(store: self.store.scope(state: \.numberFact, action: Root.Action.numberFact)))
                     
                     NavigationLink("Cancellation",
-                                   destination: EffectsCancellationView(store: self.store.scope(state: \.effectsCancellation, action: Root.Action.effectsCancellation))
-                    )
+                                   destination: EffectsCancellationView(store: self.store.scope(state: \.effectsCancellation, action: Root.Action.effectsCancellation)))
+                    
+                    NavigationLink("Weather",
+                                   destination: WeatherView(store: self.store.scope(state: \.weather, action: Root.Action.weather)))
                 }
             }
         }
