@@ -10,8 +10,8 @@ import ComposableArchitecture
 
 struct Weathers: ReducerProtocol {
     struct State: Equatable {
-        @BindableState var latitude: Double = 0
-        @BindableState var longitude: Double = 0
+        var latitude: String = ""
+        var longitude: String = ""
         var isWeatherRequest = false
         var result: WeatherInformation?
     }
@@ -19,6 +19,8 @@ struct Weathers: ReducerProtocol {
     enum Action: Equatable {
         case confirmButtonTapped
         case weatherResponse(TaskResult<WeatherInformation>)
+        case longitudeTextInput(String)
+        case latitudeTextInput(String)
     }
     
     @Dependency(\.weatherClient) var weatherClient
@@ -31,9 +33,18 @@ struct Weathers: ReducerProtocol {
             
             return .task { [latitude = state.latitude, longitude = state.longitude] in
                 await .weatherResponse(TaskResult { try await
-                    self.weatherClient.fetch(latitude, longitude)!
+                    self.weatherClient.fetch(Double(latitude)!, Double(longitude)!)!
                 })
             }
+        case .longitudeTextInput(let longitude):
+            state.longitude = longitude
+            
+            return .none
+            
+        case .latitudeTextInput(let latitude):
+            state.latitude = latitude
+            
+            return .none
             
         case .weatherResponse(.success(let response)):
             state.isWeatherRequest = false
@@ -51,35 +62,23 @@ struct Weathers: ReducerProtocol {
 
 struct WeatherView: View {
     let store: StoreOf<Weathers>
-    @State var longitude: String = ""
-    @State var latitude: String = ""
-    
+ 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
                 Section {
                     HStack {
                         VStack {
-                            HStack {
-                                TextField("Enter longitude", text: $longitude)
-                                Button("입력") {
-                                    
-                                }
-                            }
-                            HStack {
-                                TextField("Enter latitude", text: $latitude)
-                                Button("입력") {
-                                    
-                                }
-                            }
+                            TextField("Enter longitude", text: viewStore.binding(get: \.longitude, send: Weathers.Action.longitudeTextInput))
+                            TextField("Enter latitude", text: viewStore.binding(get: \.latitude, send: Weathers.Action.latitudeTextInput))
                             Button {
                                 viewStore.send(.confirmButtonTapped)
                             } label: {
                                 Text("Confirm")
                             }
+                            .buttonStyle(.bordered)
                         }
                         .textFieldStyle(.roundedBorder)
-                        .buttonStyle(.bordered)
                     }
                 }
                 
