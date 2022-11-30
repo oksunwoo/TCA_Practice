@@ -60,16 +60,25 @@ struct WeatherView: View {
                 Section {
                     HStack {
                         VStack {
-                            TextField("Enter longitude", text: $longitude)
-                            TextField("Enter latitude", text: $latitude)
+                            HStack {
+                                TextField("Enter longitude", text: $longitude)
+                                Button("입력") {
+                                    
+                                }
+                            }
+                            HStack {
+                                TextField("Enter latitude", text: $latitude)
+                                Button("입력") {
+                                    
+                                }
+                            }
+                            Button {
+                                viewStore.send(.confirmButtonTapped)
+                            } label: {
+                                Text("Confirm")
+                            }
                         }
                         .textFieldStyle(.roundedBorder)
-                        
-                        Button {
-                            viewStore.send(.confirmButtonTapped)
-                        } label: {
-                            Text("Confirm")
-                        }
                         .buttonStyle(.bordered)
                     }
                 }
