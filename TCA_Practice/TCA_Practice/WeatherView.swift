@@ -10,8 +10,8 @@ import ComposableArchitecture
 
 struct Weathers: ReducerProtocol {
     struct State: Equatable {
-        var latitude: Double = 0
-        var longitude: Double = 0
+        @BindableState var latitude: Double = 0
+        @BindableState var longitude: Double = 0
         var isWeatherRequest = false
         var result: WeatherInformation?
     }
