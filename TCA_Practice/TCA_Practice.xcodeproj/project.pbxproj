@@ -11,6 +11,7 @@
 		53B3A84E2930BBC4005FD290 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B3A84D2930BBC4005FD290 /* WeatherView.swift */; };
 		53B3A8502934A1A1005FD290 /* WeatherInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B3A84F2934A1A1005FD290 /* WeatherInformation.swift */; };
 		53B3A8522934ADEC005FD290 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B3A8512934ADEC005FD290 /* JsonParser.swift */; };
+		53B3A8542938A1B7005FD290 /* PhotoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B3A8532938A1B7005FD290 /* PhotoClient.swift */; };
 		53C10B072926713B00459229 /* NumberFactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C10B062926713B00459229 /* NumberFactView.swift */; };
 		53D38E4D292235E0008F3C69 /* TCA_PracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E4C292235E0008F3C69 /* TCA_PracticeApp.swift */; };
 		53D38E4F292235E0008F3C69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D38E4E292235E0008F3C69 /* RootView.swift */; };
@@ -30,6 +31,7 @@
 		53B3A84D2930BBC4005FD290 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		53B3A84F2934A1A1005FD290 /* WeatherInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 		53B3A8512934ADEC005FD290 /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		53B3A8532938A1B7005FD290 /* PhotoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoClient.swift; sourceTree = "<group>"; };
 		53C10B062926713B00459229 /* NumberFactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactView.swift; sourceTree = "<group>"; };
 		53D38E49292235E0008F3C69 /* TCA_Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA_Practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D38E4C292235E0008F3C69 /* TCA_PracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_PracticeApp.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				53B3A84D2930BBC4005FD290 /* WeatherView.swift */,
 				53D38E6B292524D8008F3C69 /* FactClient.swift */,
 				53B3A84B292F7926005FD290 /* WeatherClient.swift */,
+				53B3A8532938A1B7005FD290 /* PhotoClient.swift */,
 				53B3A84F2934A1A1005FD290 /* WeatherInformation.swift */,
 				53B3A8512934ADEC005FD290 /* JsonParser.swift */,
 				53D38E50292235E1008F3C69 /* Assets.xcassets */,
@@ -186,6 +189,7 @@
 				53D38E4F292235E0008F3C69 /* RootView.swift in Sources */,
 				53D38E4D292235E0008F3C69 /* TCA_PracticeApp.swift in Sources */,
 				53D38E682924C9CB008F3C69 /* Core.swift in Sources */,
+				53B3A8542938A1B7005FD290 /* PhotoClient.swift in Sources */,
 				53B3A8522934ADEC005FD290 /* JsonParser.swift in Sources */,
 				53D38E662923D32E008F3C69 /* CounterView.swift in Sources */,
 			);

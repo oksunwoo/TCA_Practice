@@ -35,7 +35,7 @@ struct Coord: Codable {
 // MARK: - Main
 struct Main: Codable {
     let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity, grndLevel: Int
+    let pressure, humidity : Int
 
     enum CodingKeys: String, CodingKey {
         case temp
@@ -44,7 +44,7 @@ struct Main: Codable {
         case tempMax = "temp_max"
         case pressure, humidity
         //case seaLevel = "sea_level"
-        case grndLevel = "grnd_level"
+        //case grndLevel = "grnd_level"
     }
 }
 
@@ -71,7 +71,7 @@ struct Weather: Codable {
 struct Wind: Codable {
     let speed: Double
     let deg: Int
-    let gust: Double
+    //let gust: Double
 }
 
 extension WeatherInformation: Equatable {
