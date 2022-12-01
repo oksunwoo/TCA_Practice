@@ -8,28 +8,37 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct PhotoPass: ReducerProtocol {
-    struct State: Equatable {
-        
-    }
-    
-    enum Action: Equatable {
-        
-    }
-    
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        <#code#>
-    }
-}
+//struct PhotoPass: ReducerProtocol {
+//    struct State: Equatable {
+//        
+//    }
+//    
+//    enum Action: Equatable {
+//        
+//    }
+//    
+//    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+//        
+//    }
+//}
 
 struct PhotoPassView: View {
+    //let store: StoreOf<PhotoPass>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("매니매니봉봉")
+            
+        }
+        
     }
 }
 
 struct PhotoPassView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoPassView()
+        NavigationView {
+            PhotoPassView()
+           // PhotoPassView(store: Store(initialState: PhotoPass.State(), reducer: PhotoPass()))
+        }
     }
 }
