@@ -8,19 +8,23 @@
 import SwiftUI
 import ComposableArchitecture
 
-//struct PhotoPass: ReducerProtocol {
-//    struct State: Equatable {
-//        
-//    }
-//    
-//    enum Action: Equatable {
-//        
-//    }
-//    
-//    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-//        
-//    }
-//}
+struct PhotoPass: ReducerProtocol {
+    struct State: Equatable {
+        var photo: UIImage
+        var isPhotoRequest = false
+    }
+    
+    enum Action: Equatable {
+        case confirmButtonTapped
+    }
+    
+    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
+        switch action {
+        case .confirmButtonTapped:
+            return .none
+        }
+    }
+}
 
 struct PhotoPassView: View {
     //let store: StoreOf<PhotoPass>
