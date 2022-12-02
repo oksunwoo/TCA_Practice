@@ -11,20 +11,47 @@ import ComposableArchitecture
 struct PhotoPass: ReducerProtocol {
     struct State: Equatable {
         var photo: UIImage
+        var photoData: Data?
         var isPhotoRequest = false
     }
     
     enum Action: Equatable {
         case confirmButtonTapped
+        case photoResponse(TaskResult<UIImage>)
     }
+    
+    @Dependency (\.photoClient) var photoClient
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .confirmButtonTapped:
+            state.isPhotoRequest = true
+            state.photoData = nil
+            
+            return .task { [photoData = state.photoData] in
+                await .photoResponse(TaskResult { try await
+                    self.photoClient.post(photoData!)
+                })
+            }
+            
+        case .photoResponse(.success(let response)):
+            state.isPhotoRequest = false
+            state.photo = response
+            state.photoData = changeType(from: state.photo)
+            
+            return .none
+            
+        case .photoResponse(.failure):
+            state.isPhotoRequest = false
             return .none
         }
     }
 }
+
+func changeType(from image: UIImage) -> Data {
+    return image.jpegData(compressionQuality: 1)!
+}
+
 
 struct PhotoPassView: View {
     //let store: StoreOf<PhotoPass>
