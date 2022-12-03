@@ -26,6 +26,9 @@ struct RootView: View {
                     
                     NavigationLink("Weather",
                                    destination: WeatherView(store: self.store.scope(state: \.weather, action: Root.Action.weather)))
+                    
+                    NavigationLink("PhotoPass",
+                                   destination: PhotoPassView(store: self.store.scope(state: \.photo, action: Root.Action.photo)))
                 }
             }
         }
