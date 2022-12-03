@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct PhotoPass: ReducerProtocol {
     struct State: Equatable {
-        var photo: UIImage
+        var photo: UIImage?
         var photoData: Data?
         var isPhotoRequest = false
         var result: String?
@@ -27,7 +27,7 @@ struct PhotoPass: ReducerProtocol {
         switch action {
         case .confirmButtonTapped:
             state.isPhotoRequest = true
-            state.photoData = changeType(from: state.photo)
+            state.photoData = changeType(from: state.photo!)
             
             return .task { [photoData = state.photoData] in
                 await .photoResponse(TaskResult { try await
@@ -110,7 +110,7 @@ struct PhotoPassView: View {
 struct PhotoPassView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PhotoPassView(store: Store(initialState: PhotoPass.State(photo: UIImage()), reducer: PhotoPass()))
+            PhotoPassView(store: Store(initialState: PhotoPass.State(), reducer: PhotoPass()))
         }
     }
 }
