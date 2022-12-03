@@ -13,11 +13,12 @@ struct PhotoPass: ReducerProtocol {
         var photo: UIImage
         var photoData: Data?
         var isPhotoRequest = false
+        var result: String?
     }
     
     enum Action: Equatable {
         case confirmButtonTapped
-        case photoResponse(TaskResult<UIImage>)
+        case photoResponse(TaskResult<String>)
     }
     
     @Dependency (\.photoClient) var photoClient
@@ -36,8 +37,7 @@ struct PhotoPass: ReducerProtocol {
             
         case .photoResponse(.success(let response)):
             state.isPhotoRequest = false
-            state.photo = response
-            state.photoData = changeType(from: state.photo)
+            state.result = response
             
             return .none
             
