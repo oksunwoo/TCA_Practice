@@ -13,42 +13,55 @@ struct PhotoPass: ReducerProtocol {
         var photo: UIImage?
         var photoData: Data?
         var isPhotoRequest = false
+        @BindableState var isPhotoPickerPresented = false
         var result: String?
     }
     
-    enum Action: Equatable {
+    enum Action: BindableAction, Equatable {
         case confirmButtonTapped
         case photoResponse(TaskResult<String>)
         case photoInput(UIImage?)
+        case showPhotoPicker
+        case binding(BindingAction<State>)
     }
     
     @Dependency (\.photoClient) var photoClient
     
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        switch action {
-        case .confirmButtonTapped:
-            state.isPhotoRequest = true
-            state.photoData = changeType(from: state.photo!)
-            
-            return .task { [photoData = state.photoData] in
-                await .photoResponse(TaskResult { try await
-                    self.photoClient.post(photoData!)
-                })
+    var body: some ReducerProtocol<State, Action> {
+        BindingReducer()
+        Reduce { state, action in
+            switch action {
+            case .confirmButtonTapped:
+                state.isPhotoRequest = true
+                state.photoData = changeType(from: state.photo!)
+                
+                return .task { [photoData = state.photoData] in
+                    await .photoResponse(TaskResult { try await
+                        self.photoClient.post(photoData!)
+                    })
+                }
+                
+            case .photoInput(let photo):
+                state.photo = photo
+                return .none
+                
+            case .photoResponse(.success(let response)):
+                state.isPhotoRequest = false
+                state.result = response
+                
+                return .none
+                
+            case .photoResponse(.failure):
+                state.isPhotoRequest = false
+                return .none
+                
+            case .showPhotoPicker:
+                state.isPhotoPickerPresented.toggle()
+                return .none
+                
+            case .binding:
+                return .none
             }
-            
-        case .photoInput(let photo):
-            state.photo = photo
-            return .none
-            
-        case .photoResponse(.success(let response)):
-            state.isPhotoRequest = false
-            state.result = response
-            
-            return .none
-            
-        case .photoResponse(.failure):
-            state.isPhotoRequest = false
-            return .none
         }
     }
 }
@@ -61,7 +74,6 @@ func changeType(from image: UIImage) -> Data {
 struct PhotoPassView: View {
     let store: StoreOf<PhotoPass>
     
-    @State private var imagePickerPresented = false
     @State private var selectedImage: UIImage?
     @State private var profileImage: Image?
     
@@ -72,7 +84,7 @@ struct PhotoPassView: View {
                 VStack {
                     Text("매니매니봉봉")
                     Button {
-                        imagePickerPresented.toggle()
+                        ViewStore.send(.showPhotoPicker)
                     } label: {
                         let image = profileImage == nil ? Image(systemName: "plus.circle") : profileImage ?? Image(systemName: "plus.circle")
                         image
@@ -81,7 +93,7 @@ struct PhotoPassView: View {
                             .frame(width: 200, height: 200)
                             .foregroundColor(.black)
                     }
-                    .sheet(isPresented: $imagePickerPresented,
+                    .sheet(isPresented: ViewStore.binding(\.$isPhotoPickerPresented),
                            onDismiss: loadImage) {
                         PhotoPicker(image: $selectedImage)
                     }
