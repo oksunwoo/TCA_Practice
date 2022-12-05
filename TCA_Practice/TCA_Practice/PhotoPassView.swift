@@ -19,6 +19,7 @@ struct PhotoPass: ReducerProtocol {
     enum Action: Equatable {
         case confirmButtonTapped
         case photoResponse(TaskResult<String>)
+        case photoInput(UIImage?)
     }
     
     @Dependency (\.photoClient) var photoClient
@@ -34,6 +35,10 @@ struct PhotoPass: ReducerProtocol {
                     self.photoClient.post(photoData!)
                 })
             }
+            
+        case .photoInput(let photo):
+            state.photo = photo
+            return .none
             
         case .photoResponse(.success(let response)):
             state.isPhotoRequest = false
@@ -80,7 +85,9 @@ struct PhotoPassView: View {
                            onDismiss: loadImage) {
                         PhotoPicker(image: $selectedImage)
                     }
+                   
                     Button("결과 확인하기") {
+                        ViewStore.send(.photoInput(selectedImage))
                         ViewStore.send(.confirmButtonTapped)
                     }
                     .buttonStyle(.bordered)
