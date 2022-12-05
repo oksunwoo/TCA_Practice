@@ -10,11 +10,11 @@ import ComposableArchitecture
 
 struct PhotoPass: ReducerProtocol {
     struct State: Equatable {
-        var photo: UIImage?
         var photoData: Data?
         var isPhotoRequest = false
-        @BindableState var isPhotoPickerPresented = false
         var result: String?
+        @BindableState var photo: UIImage?
+        @BindableState var isPhotoPickerPresented = false
     }
     
     enum Action: BindableAction, Equatable {
@@ -74,53 +74,43 @@ func changeType(from image: UIImage) -> Data {
 struct PhotoPassView: View {
     let store: StoreOf<PhotoPass>
     
-    @State private var selectedImage: UIImage?
-    @State private var profileImage: Image?
-    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) {
-            ViewStore in
+            viewStore in
             Section {
                 VStack {
                     Text("매니매니봉봉")
                     Button {
-                        ViewStore.send(.showPhotoPicker)
+                        viewStore.send(.showPhotoPicker)
                     } label: {
-                        let image = profileImage == nil ? Image(systemName: "plus.circle") : profileImage ?? Image(systemName: "plus.circle")
+                        let image = viewStore.photo == nil ? Image(systemName: "plus.circle") : Image(uiImage: viewStore.photo!)
                         image
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200, height: 200)
                             .foregroundColor(.black)
                     }
-                    .sheet(isPresented: ViewStore.binding(\.$isPhotoPickerPresented),
-                           onDismiss: loadImage) {
-                        PhotoPicker(image: $selectedImage)
+                    .sheet(isPresented: viewStore.binding(\.$isPhotoPickerPresented)) {
+                        PhotoPicker(image: viewStore.binding(\.$photo))
                     }
                    
                     Button("결과 확인하기") {
-                        ViewStore.send(.photoInput(selectedImage))
-                        ViewStore.send(.confirmButtonTapped)
+                        viewStore.send(.confirmButtonTapped)
                     }
                     .buttonStyle(.bordered)
                     
-                    if ViewStore.isPhotoRequest {
+                    if viewStore.isPhotoRequest {
                         ProgressView()
                             .frame(maxWidth: .infinity)
                             .id(UUID())
                     }
                     
-                    if let result = ViewStore.result {
+                    if let result = viewStore.result {
                         Text(result)
                     }
                 }
             }
         }
-    }
-    
-    func loadImage() {
-        guard let selectedImage = selectedImage else { return }
-        profileImage = Image(uiImage: selectedImage)
     }
 }
 
