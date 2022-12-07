@@ -26,7 +26,7 @@ extension PhotoClient: DependencyKey {
             request.httpMethod = "POST"
             
             let boundary = UUID().uuidString
-            let headers: [String: String] = ["Content-Type": "multipart/form-data; boundary=\(boundary)", "Authorization": "KakaoAK 32e827cd3335958e97b7b7240ec4466c"]
+            let headers: [String: String] = ["Content-Type": "multipart/form-data; boundary=\(boundary)", "Authorization": ""]
             
             headers.forEach { (key, value) in
                 request.setValue(value, forHTTPHeaderField: key)

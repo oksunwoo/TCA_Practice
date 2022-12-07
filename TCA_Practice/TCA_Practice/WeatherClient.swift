@@ -22,7 +22,7 @@ extension DependencyValues {
 extension WeatherClient: DependencyKey {
     static let liveValue = WeatherClient(
         fetch: { lat, lon in
-            let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=0c9597f339213a09976a39e4c6f49cc5")!)
+            let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=")!)
             
             let parsedData = JsonParser.decode(from: data)
             return parsedData
